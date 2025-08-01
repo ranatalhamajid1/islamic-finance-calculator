@@ -31,11 +31,11 @@
     <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
     
     <!-- CSS Libraries -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.0/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="Frontend File/css/styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     
     <!-- Structured Data -->
@@ -549,114 +549,10 @@ Timestamp: ${health.timestamp}`);
     </script>
 
     
+    <!-- Fixed JavaScript Loading Order - main.js must load first -->
+    <script src="js/main.js"></script>
     <script src="js/calculators.js"></script>
     <script src="js/language.js"></script>
     <script src="js/export.js"></script>
-
-    <script>
-        // CORS-aware version of the calculator
-        
-        // Detect current protocol and show appropriate warnings
-        function detectProtocol() {
-            const protocol = window.location.protocol;
-            const isFile = protocol === 'file:';
-            const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-            
-            document.getElementById('currentProtocol').textContent = protocol;
-            document.getElementById('debugProtocol').textContent = protocol;
-            
-            if (isFile) {
-                document.getElementById('corsNotice').style.display = 'block';
-                document.getElementById('systemStatus').className = 'inline-block w-2 h-2 bg-red-500 rounded-full';
-                document.getElementById('systemStatus').nextElementSibling.textContent = 'CORS Blocked';
-            } else if (isLocalhost) {
-                document.getElementById('corsNotice').style.display = 'none';
-                document.getElementById('systemStatus').className = 'inline-block w-2 h-2 bg-green-500 rounded-full';
-                document.getElementById('systemStatus').nextElementSibling.textContent = 'Local Server';
-            }
-        }
-
-        function showSetupInstructions() {
-            document.getElementById('setupModal').classList.remove('hidden');
-        }
-
-        function closeSetupModal() {
-            document.getElementById('setupModal').classList.add('hidden');
-        }
-
-        function toggleDebugMode() {
-            const panel = document.getElementById('debugPanel');
-            panel.classList.toggle('hidden');
-        }
-
-        function toggleDebugPanel() {
-            const panel = document.getElementById('debugPanel');
-            panel.classList.toggle('hidden');
-        }
-
-        function testConnection() {
-            const logs = document.getElementById('debugLogs');
-            const timestamp = new Date().toLocaleTimeString();
-            logs.innerHTML += `<div class="text-blue-400">[${timestamp}] Testing connection...</div>`;
-            
-            if (window.location.protocol === 'file:') {
-                logs.innerHTML += `<div class="text-red-400">[${timestamp}] CORS policy prevents API access from file:// protocol</div>`;
-            } else {
-                logs.innerHTML += `<div class="text-green-400">[${timestamp}] Protocol ${window.location.protocol} should work</div>`;
-            }
-            
-            document.getElementById('debugLastAttempt').textContent = timestamp;
-        }
-
-        function manualRefresh() {
-            if (window.location.protocol === 'file:') {
-                alert('Please run from a local server to enable live data updates.');
-                showSetupInstructions();
-            } else {
-                // Your existing refresh logic
-                console.log('Refresh would work from proper server');
-            }
-        }
-
-        function startLocalServer() {
-            showSetupInstructions();
-        }
-
-        function openGitHubPages() {
-            window.open('https://pages.github.com/', '_blank');
-        }
-
-        function openNetlify() {
-            window.open('https://app.netlify.com/drop', '_blank');
-        }
-
-        // Calculator placeholder functions
-        function openCalculator(type) {
-            alert(`${type} calculator would open here. This works even with CORS issues!`);
-        }
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            detectProtocol();
-            
-            // Show setup instructions automatically if using file:// protocol
-            if (window.location.protocol === 'file:') {
-                setTimeout(() => {
-                    showSetupInstructions();
-                }, 2000);
-            }
-        });
-    </script>
-        <script>
-// Set your Apps Script URL here (replace with your actual URL)
-document.addEventListener('DOMContentLoaded', function() {
-    if (window.calculatorApp) {
-        window.calculatorApp.appsScriptUrl = 'https://script.google.com/macros/s/AKfycbwO3rDwidosqqH7isk-Mu0lyF03UKi9P0gsAwQ5QvJ9QZIFcoK3VbJNPRyfQLqX9-3g/exec';
-        window.calculatorApp.loadInitialData();
-    }
-});
-        </script>
-    <!-- Fixed JavaScript Loading for Netlify -->
-    <script src="js/main.js"></script>
 </body>
 </html>
