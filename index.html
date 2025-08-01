@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
        <meta charset="UTF-8">
@@ -69,7 +69,7 @@
         <i class="fas fa-shield-alt mr-2"></i>
         <strong>Secure Connection:</strong> All vulnerabilities have been fixed. Server running with enhanced security.
         <button onclick="document.getElementById('securityNotice').style.display='none'" class="ml-4 bg-white text-green-500 px-2 py-1 rounded text-xs hover:bg-gray-100">
-            ✓ Got it
+            âœ“ Got it
         </button>
     </div>
 
@@ -104,7 +104,7 @@
                         <i class="fas fa-sync-alt mr-1"></i> Refresh
                     </button>
                     <button id="languageToggle" class="px-3 py-2 bg-gray-200 dark:bg-gray-700 rounded-md text-sm font-medium">
-                        اردو
+                        Ø§Ø±Ø¯Ùˆ
                     </button>
                     <button id="themeToggle" class="p-2 bg-gray-200 dark:bg-gray-700 rounded-md" title="Toggle theme">
                         <i class="fas fa-moon dark:hidden"></i>
@@ -179,7 +179,7 @@
                     </button>
                     <!-- Language Toggle -->
                     <button id="languageToggle" class="px-3 py-2 bg-gray-200 dark:bg-gray-700 rounded-md text-sm font-medium">
-                        اردو
+                        Ø§Ø±Ø¯Ùˆ
                     </button>
                     <!-- Theme Toggle -->
                     <button id="themeToggleNav" class="p-2 bg-gray-200 dark:bg-gray-700 rounded-md" title="Toggle theme">
@@ -241,7 +241,7 @@
                                 </div>
                                 <div>
                                     <h4 class="font-medium text-green-700 dark:text-green-300">Using Live Server (VS Code):</h4>
-                                    <p class="text-green-600 dark:text-green-400">Install "Live Server" extension and right-click → "Open with Live Server"</p>
+                                    <p class="text-green-600 dark:text-green-400">Install "Live Server" extension and right-click â†’ "Open with Live Server"</p>
                                 </div>
                             </div>
                         </div>
@@ -288,7 +288,7 @@
                                 <code class="block bg-gray-800 text-yellow-400 p-2 rounded text-xs">
                                     chrome --disable-web-security --user-data-dir="c:/chrome-dev-session"
                                 </code>
-                                <p class="text-red-600 dark:text-red-400 font-medium">⚠️ Security Risk: Only for testing!</p>
+                                <p class="text-red-600 dark:text-red-400 font-medium">âš ï¸ Security Risk: Only for testing!</p>
                             </div>
                         </div>
                     </div>
@@ -302,11 +302,11 @@
                             </div>
                             <div class="flex justify-between">
                                 <span>CORS Status:</span>
-                                <span class="text-red-600">❌ Blocked</span>
+                                <span class="text-red-600">âŒ Blocked</span>
                             </div>
                             <div class="flex justify-between">
                                 <span>API Access:</span>
-                                <span class="text-red-600">❌ Failed</span>
+                                <span class="text-red-600">âŒ Failed</span>
                             </div>
                         </div>
                     </div>
@@ -357,7 +357,7 @@
                     <p class="text-sm text-orange-700">
                         <strong>Demo Mode Active:</strong> API requests are blocked due to CORS policy. 
                         <button onclick="showSetupInstructions()" class="underline font-medium hover:text-orange-800">
-                            Click here to enable live data →
+                            Click here to enable live data â†’
                         </button>
                     </p>
                 </div>
@@ -467,7 +467,7 @@
                     <div class="flex justify-between items-start">
                         <div>
                             <h4 class="font-medium text-gray-700 dark:text-gray-300" data-translate="usd_pkr">USD/PKR</h4>
-                            <p class="text-xl font-bold text-green-600">₨281.50</p>
+                            <p class="text-xl font-bold text-green-600">â‚¨281.50</p>
                         </div>
                         <i class="fas fa-dollar-sign text-green-500"></i>
                     </div>
@@ -477,7 +477,7 @@
                     <div class="flex justify-between items-start">
                         <div>
                             <h4 class="font-medium text-gray-700 dark:text-gray-300" data-translate="gold_price">Gold (per tola)</h4>
-                            <p class="text-xl font-bold text-yellow-600">₨185,000</p>
+                            <p class="text-xl font-bold text-yellow-600">â‚¨185,000</p>
                         </div>
                         <i class="fas fa-coins text-yellow-500"></i>
                     </div>
@@ -487,7 +487,7 @@
                     <div class="flex justify-between items-start">
                         <div>
                             <h4 class="font-medium text-gray-700 dark:text-gray-300" data-translate="silver_price">Silver (per tola)</h4>
-                            <p class="text-xl font-bold text-gray-400">₨2,180</p>
+                            <p class="text-xl font-bold text-gray-400">â‚¨2,180</p>
                         </div>
                         <i class="fas fa-medal text-gray-400"></i>
                     </div>
@@ -548,7 +548,7 @@ Timestamp: ${health.timestamp}`);
         }
     </script>
 
-    <script src="js/main.js"></script>
+    
     <script src="js/calculators.js"></script>
     <script src="js/language.js"></script>
     <script src="js/export.js"></script>
@@ -656,5 +656,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
         </script>
+    <!-- Fixed JavaScript Loading for Netlify -->
+    <script src="js/main.js"></script>
 </body>
 </html>
