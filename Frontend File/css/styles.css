@@ -1,0 +1,417 @@
+/* Enhanced CSS for Islamic Finance Calculator with Real-time Features */
+
+:root {
+    --primary-color: #16a085;
+    --secondary-color: #27ae60;
+    --accent-color: #f39c12;
+    --error-color: #e74c3c;
+    --success-color: #2ecc71;
+    --warning-color: #f1c40f;
+    --info-color: #3498db;
+}
+
+/* Arabic/Urdu RTL Support */
+[dir="rtl"] {
+    text-align: right;
+}
+
+[dir="rtl"] .flex {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .ml-1 { margin-left: 0; margin-right: 0.25rem; }
+[dir="rtl"] .ml-2 { margin-left: 0; margin-right: 0.5rem; }
+[dir="rtl"] .ml-3 { margin-left: 0; margin-right: 0.75rem; }
+[dir="rtl"] .mr-1 { margin-right: 0; margin-left: 0.25rem; }
+[dir="rtl"] .mr-2 { margin-right: 0; margin-left: 0.5rem; }
+[dir="rtl"] .mr-3 { margin-right: 0; margin-left: 0.75rem; }
+
+/* Islamic Geometric Patterns */
+.islamic-pattern {
+    background-image: 
+        radial-gradient(circle at 25% 25%, transparent 20%, rgba(22, 160, 133, 0.1) 21%),
+        radial-gradient(circle at 75% 75%, transparent 20%, rgba(22, 160, 133, 0.1) 21%);
+    background-size: 30px 30px;
+}
+
+/* Real-time Data Animations */
+.updated {
+    animation: dataUpdate 2s ease-in-out;
+}
+
+@keyframes dataUpdate {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); color: var(--success-color); }
+    100% { transform: scale(1); }
+}
+
+/* Live Status Indicators */
+.live-indicator {
+    transition: all 0.3s ease;
+}
+
+.live-indicator.pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Enhanced Calculator Styling */
+.calculator-input {
+    @apply w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md 
+           bg-white dark:bg-gray-700 text-gray-900 dark:text-white
+           focus:ring-2 focus:ring-green-500 focus:border-transparent
+           transition-all duration-200;
+}
+
+.calculator-input:focus {
+    box-shadow: 0 0 0 3px rgba(22, 160, 133, 0.1);
+}
+
+.calculator-label {
+    @apply block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2;
+}
+
+.calculator-button {
+    @apply px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-medium 
+           rounded-md transition-all duration-200 focus:outline-none 
+           focus:ring-2 focus:ring-green-500 focus:ring-offset-2
+           transform hover:scale-105 active:scale-95;
+}
+
+.calculator-button:disabled {
+    @apply opacity-50 cursor-not-allowed transform-none;
+}
+
+.calculator-button-secondary {
+    @apply px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white font-medium 
+           rounded-md transition-all duration-200 focus:outline-none 
+           focus:ring-2 focus:ring-gray-500 focus:ring-offset-2
+           transform hover:scale-105 active:scale-95;
+}
+
+/* Enhanced Results Display */
+.result-card {
+    @apply bg-gradient-to-r from-green-500 to-green-600 text-white p-6 rounded-lg shadow-lg;
+    animation: slideInUp 0.5s ease-out;
+}
+
+.result-highlight {
+    @apply text-2xl font-bold;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Loading States */
+.loading-spinner {
+    @apply inline-block w-4 h-4 border-2 border-gray-300 border-t-blue-600 
+           rounded-full animate-spin;
+}
+
+.loading-skeleton {
+    @apply bg-gray-200 dark:bg-gray-700 rounded;
+    animation: skeleton-loading 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes skeleton-loading {
+    0% { opacity: 1; }
+    100% { opacity: 0.4; }
+}
+
+/* Enhanced Chart Container */
+.chart-container {
+    @apply bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md;
+    position: relative;
+    height: 400px;
+    transition: all 0.3s ease;
+}
+
+.chart-container:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Export Buttons */
+.export-buttons {
+    @apply flex flex-wrap gap-2 mt-4;
+}
+
+.export-btn {
+    @apply px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm 
+           rounded-md transition-all duration-200 transform hover:scale-105;
+}
+
+.export-btn:hover {
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+/* Islamic Finance Badges */
+.halal-badge {
+    @apply inline-flex items-center px-2 py-1 bg-green-100 dark:bg-green-900 
+           text-green-800 dark:text-green-200 text-xs font-medium rounded-full;
+    animation: fadeInScale 0.3s ease-out;
+}
+
+.haram-badge {
+    @apply inline-flex items-center px-2 py-1 bg-red-100 dark:bg-red-900 
+           text-red-800 dark:text-red-200 text-xs font-medium rounded-full;
+    animation: fadeInScale 0.3s ease-out;
+}
+
+/* Dashboard Card Enhancements */
+.dashboard-card {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.dashboard-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.dashboard-card:hover::before {
+    left: 100%;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Notification System */
+.notification {
+    @apply max-w-sm w-full p-4 rounded-lg shadow-lg;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.notification-success {
+    @apply bg-green-500 text-white;
+}
+
+.notification-error {
+    @apply bg-red-500 text-white;
+}
+
+.notification-warning {
+    @apply bg-yellow-500 text-white;
+}
+
+.notification-info {
+    @apply bg-blue-500 text-white;
+}
+
+/* Real-time Price Changes */
+.price-up {
+    color: var(--success-color);
+    animation: priceUp 0.5s ease-out;
+}
+
+.price-down {
+    color: var(--error-color);
+    animation: priceDown 0.5s ease-out;
+}
+
+@keyframes priceUp {
+    0% { transform: translateY(10px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes priceDown {
+    0% { transform: translateY(-10px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Enhanced Modal */
+.slide-up {
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Progress Bars */
+.progress-bar {
+    @apply w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2;
+}
+
+.progress-fill {
+    @apply h-2 bg-green-500 rounded-full transition-all duration-500 ease-out;
+}
+
+/* Status Indicators */
+.status-online {
+    @apply bg-green-500;
+    animation: pulse 2s infinite;
+}
+
+.status-delayed {
+    @apply bg-yellow-500;
+    animation: pulse 3s infinite;
+}
+
+.status-error {
+    @apply bg-red-500;
+    animation: pulse 1s infinite;
+}
+
+/* Islamic Calligraphy Inspired Elements */
+.islamic-border {
+    border-image: linear-gradient(45deg, var(--primary-color), var(--secondary-color)) 1;
+    border-style: solid;
+    border-width: 2px;
+}
+
+/* Responsive Enhancements */
+@media (max-width: 768px) {
+    .calculator-input {
+        @apply text-base;
+    }
+    
+    .chart-container {
+        height: 300px;
+    }
+    
+    .export-buttons {
+        @apply flex-col space-x-0 space-y-2;
+    }
+    
+    .dashboard-card {
+        @apply text-center;
+    }
+    
+    .result-card {
+        @apply p-4;
+    }
+    
+    .result-highlight {
+        @apply text-xl;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    .print-break {
+        page-break-before: always;
+    }
+    
+    .chart-container {
+        height: 300px;
+    }
+    
+    body {
+        @apply text-black bg-white;
+    }
+}
+
+/* Dark Mode Transitions */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-gray-100 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-gray-400 dark:bg-gray-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-500 dark:bg-gray-500;
+}
+
+/* Additional Animation Classes */
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.5s ease-out;
+}
+
+@keyframes slideInLeft {
+    from { transform: translateX(-100px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.slide-in-right {
+    animation: slideInRight 0.5s ease-out;
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(100px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeInScale {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Accessibility Improvements */
+.focus-visible:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .calculator-button {
+        border: 2px solid;
+    }
+    
+    .result-card {
+        border: 2px solid rgba(255, 255, 255, 0.5);
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
