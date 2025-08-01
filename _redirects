@@ -1,0 +1,8 @@
+﻿# API Proxy redirects to fix CORS issues
+/api/gold/*  https://api.metals.live/v1/spot/gold  200
+/api/silver/*  https://api.metals.live/v1/spot/silver  200
+/api/currency/*  https://api.exchangerate-api.com/v4/latest/USD  200
+/api/crypto/*  https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd,pkr  200
+
+# Fallback for SPA
+/*  /index.html  200
