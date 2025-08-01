@@ -2,42 +2,34 @@
  * Islamic Finance Calculator - Netlify CORS Fixed Version
  */
 
-// Configuration for Netlify deployment
-const API_CONFIG = {
-    // Netlify proxy URLs (from our _redirects file)
-    GOLD_API: '/api/gold',
-    SILVER_API: '/api/silver', 
-    CURRENCY_API: '/api/currency',
-    CRYPTO_API: '/api/crypto',
-    
-    // Demo data fallback
-    DEMO_DATA: {
-        currencies: {
-            PKR: 281.50, EUR: 0.85, GBP: 0.73, SAR: 3.75, AED: 3.67,
-            JPY: 110.25, CAD: 1.25, AUD: 1.35
-        },
-        goldSilver: {
-            gold: {
-                price_pkr_tola: 185000,
-                change24h: 0.75
-            },
-            silver: {
-                price_pkr_tola: 2180,
-                change24h: -0.32
-            }
-        }
-    }
-};
-
 // Main Calculator Application
 class IslamicFinanceCalculator {
     constructor() {
         this.isLoading = false;
         this.usingDemo = false;
-        this.apiData = API_CONFIG.DEMO_DATA;
+        this.apiData = this.getDefaultDemoData();
         this.lastUpdate = new Date();
         
         this.init();
+    }
+
+    getDefaultDemoData() {
+        return {
+            currencies: {
+                PKR: 281.50, EUR: 0.85, GBP: 0.73, SAR: 3.75, AED: 3.67,
+                JPY: 110.25, CAD: 1.25, AUD: 1.35
+            },
+            goldSilver: {
+                gold: {
+                    price_pkr_tola: 185000,
+                    change24h: 0.75
+                },
+                silver: {
+                    price_pkr_tola: 2180,
+                    change24h: -0.32
+                }
+            }
+        };
     }
 
     init() {
@@ -118,7 +110,7 @@ class IslamicFinanceCalculator {
 
         } catch (error) {
             console.warn('⚠️ Using demo data:', error.message);
-            this.apiData = API_CONFIG.DEMO_DATA;
+            this.apiData = this.getDefaultDemoData();
             this.usingDemo = true;
             this.updateStatus('demo', 'Demo Mode');
         }
@@ -130,8 +122,30 @@ class IslamicFinanceCalculator {
 
     async fetchLiveData() {
         try {
-            // Fetch currency data
-            const currencyResponse = await fetch(API_CONFIG.CURRENCY_API, {
+            // Use the enhanced API functions from api-config.js if available
+            if (window.getLiveCurrencyRates && window.getLiveGoldPrice) {
+                const currencyData = await window.getLiveCurrencyRates();
+                const goldData = await window.getLiveGoldPrice();
+                
+                if (currencyData && goldData) {
+                    return {
+                        currencies: currencyData,
+                        goldSilver: {
+                            gold: {
+                                price_pkr_tola: goldData.price || 185000,
+                                change24h: 0.75
+                            },
+                            silver: {
+                                price_pkr_tola: 2180,
+                                change24h: -0.32
+                            }
+                        }
+                    };
+                }
+            }
+
+            // Fallback to simple fetch
+            const currencyResponse = await fetch('/api/currency', {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -144,8 +158,8 @@ class IslamicFinanceCalculator {
                 console.log('💱 Currency data fetched successfully');
                 
                 return {
-                    currencies: currencyData.rates || API_CONFIG.DEMO_DATA.currencies,
-                    goldSilver: API_CONFIG.DEMO_DATA.goldSilver // Will be replaced with actual gold API
+                    currencies: currencyData.rates || this.getDefaultDemoData().currencies,
+                    goldSilver: this.getDefaultDemoData().goldSilver
                 };
             }
 
@@ -401,6 +415,3 @@ document.addEventListener('DOMContentLoaded', function() {
 window.addEventListener('beforeunload', function() {
     console.log('👋 Islamic Finance Calculator shutting down...');
 });
-
-// Export for debugging
-window.API_CONFIG = API_CONFIG;
