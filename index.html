@@ -35,7 +35,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="Frontend File/css/styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     
     <!-- Structured Data -->
@@ -492,6 +492,25 @@
                         <i class="fas fa-medal text-gray-400"></i>
                     </div>
                     <div class="text-sm mt-1 text-gray-500">Demo Data</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Calculator Modal -->
+    <div id="calculatorModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white dark:bg-gray-800 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto slide-up">
+                <div class="flex justify-between items-center p-6 border-b dark:border-gray-700">
+                    <h2 id="calculatorTitle" class="text-xl font-bold text-gray-900 dark:text-white">
+                        Calculator
+                    </h2>
+                    <button onclick="closeCalculator()" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200" aria-label="Close calculator" title="Close">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                <div id="calculatorContent" class="p-6">
+                    <!-- Calculator content will be loaded here -->
                 </div>
             </div>
         </div>
